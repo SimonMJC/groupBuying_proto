@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "880902530386",
+    "firebase_url": "https://gbprototype.firebaseio.com",
+    "project_id": "gbprototype",
+    "storage_bucket": "gbprototype.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:880902530386:android:e6cb1e2bad940ee307068b",
+        "android_client_info": {
+          "package_name": "com.reproto"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "880902530386-1i6bbms57fppirph5ba3jio90lu228pt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCo4SukP0D1Lx8GVYUnW6E2LSKaIfexzcI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "880902530386-1i6bbms57fppirph5ba3jio90lu228pt.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "880902530386-9v49065lm67o4gr4luo6hm30j0ooshcj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.ReProto"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
