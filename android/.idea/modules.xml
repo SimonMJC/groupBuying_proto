@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ReProto.iml" filepath="$PROJECT_DIR$/.idea/modules/ReProto.iml" group="ReProto" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="ReProto/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/384342243/react-native-community_google-signin.iml" filepath="$PROJECT_DIR$/.idea/modules/384342243/react-native-community_google-signin.iml" group="ReProto/react-native-community_google-signin" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-106930156/react-native-community_masked-view.iml" filepath="$PROJECT_DIR$/.idea/modules/-106930156/react-native-community_masked-view.iml" group="ReProto/react-native-community_masked-view" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/895128387/react-native-gesture-handler.iml" filepath="$PROJECT_DIR$/.idea/modules/895128387/react-native-gesture-handler.iml" group="ReProto/react-native-gesture-handler" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1461993843/react-native-google-signin.iml" filepath="$PROJECT_DIR$/.idea/modules/1461993843/react-native-google-signin.iml" group="ReProto/react-native-google-signin" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1322634489/react-native-reanimated.iml" filepath="$PROJECT_DIR$/.idea/modules/1322634489/react-native-reanimated.iml" group="ReProto/react-native-reanimated" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1876289260/react-native-safe-area-context.iml" filepath="$PROJECT_DIR$/.idea/modules/1876289260/react-native-safe-area-context.iml" group="ReProto/react-native-safe-area-context" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/646757892/react-native-screens.iml" filepath="$PROJECT_DIR$/.idea/modules/646757892/react-native-screens.iml" group="ReProto/react-native-screens" />
+    </modules>
+  </component>
+</project>

@@ -98,7 +98,8 @@ const AppStack = createStackNavigator(
             screen: TabNavigator,
             navigationOptions: ({ navigation }) => ({
                 //header: null 사용 대신에 headerShown으로 대체
-                headerShown: false,
+                // headerShown: false,
+                header: null
             }),
         },
         

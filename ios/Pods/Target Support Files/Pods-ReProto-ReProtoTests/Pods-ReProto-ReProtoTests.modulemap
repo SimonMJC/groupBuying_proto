@@ -1,0 +1,6 @@
+module Pods_ReProto_ReProtoTests {
+  umbrella header "Pods-ReProto-ReProtoTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
