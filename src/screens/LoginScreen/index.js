@@ -7,6 +7,7 @@ import {
     TouchableOpacity,
     StyleSheet
 } from 'react-native';
+import { StackActions, NavigationActions } from 'react-navigation';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { GoogleSignin, GoogleSigninButton, statusCodes } from 'react-native-google-signin'
 
@@ -23,6 +24,8 @@ export default class LoginScreen extends Component{
     static navigationOptions = {
         header: null,
     };
+
+
  componentDidMount() {
     GoogleSignin.configure({
       webClientId: '880902530386-1i6bbms57fppirph5ba3jio90lu228pt.apps.googleusercontent.com', 
@@ -44,10 +47,13 @@ export default class LoginScreen extends Component{
         // user cancelled the login flow
       } else if (error.code === statusCodes.IN_PROGRESS) {
         // operation (f.e. sign in) is in progress already
+
       } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
         // play services not available or outdated
+
       } else {
         // some other error happened
+
       }
     }
     this.props.navigation.replace('TabNavigator')
@@ -67,6 +73,11 @@ export default class LoginScreen extends Component{
     _doLogin(){
         // do something
         this.props.navigation.replace('TabNavigator')
+    }
+
+    createAccount(){
+      // go create account page
+      this.props.navigation.replace('CreateAccountScreen')
     }
 
     render(){
@@ -103,8 +114,8 @@ export default class LoginScreen extends Component{
 
                <View style={styles.buttonArea}>
                   <TouchableOpacity
-                style={styles.sign_button}
-               >
+                  onPress={this.createAccount.bind(this)}
+                style={styles.sign_button}> 
                  <Text style={styles.sign_button_title}>회원가입</Text>
                </TouchableOpacity>
                </View>

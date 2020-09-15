@@ -10,20 +10,27 @@ import {
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { withNavigation } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 // import axios from 'axios';
 
-export default class HomeScreen extends Component {
-
+export default class HomeScreen extends Component{
+    goDetailScreen(){
+        // go Detail page
+        this.props.navigation.replace('DetailScreen')
+      }
     render() {
         return (
             <ScrollView style={styles.container}>
             
                 <View style={styles.wrapContent}>
                     <View style={styles.content}>
-                        <Image
+                        <TouchableOpacity onPress={this.goDetailScreen.bind(this)}>
+                             <Image
                             style={styles.image}
                             source={require('../../img/onion.jpg')}
                         />
+                        </TouchableOpacity>
+                       
                     </View>
                 </View>
                 <View style={styles.wrapContent}>
@@ -42,7 +49,36 @@ export default class HomeScreen extends Component {
             </ScrollView>
         );
     }
+    
 }
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        padding: wp('5%'),
+        backgroundColor: 'white',
+    },
+    wrapContent: {
+        width: wp('90%'),
+        height: wp('90%'),
+        paddingBottom: wp('5%'),
+
+    },
+    content: {
+        width: "100%",
+        height: "100%",
+        backgroundColor: "#46c3ad",
+    },
+    image: {
+        width: wp('90%'),
+        height: wp('100%'),
+        marginBottom: 30,
+        justifyContent: 'center',
+        resizeMode: "contain"
+    }
+})
+
+
+
 
 // const text = async () => {
 //     const res = await axios.post('http://192.168.35.43:5000/account/login', {
@@ -73,29 +109,3 @@ export default class HomeScreen extends Component {
 // }
 
 
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: wp('5%'),
-        backgroundColor: 'white',
-    },
-    wrapContent: {
-        width: wp('90%'),
-        height: wp('90%'),
-        paddingBottom: wp('5%'),
-
-    },
-    content: {
-        width: "100%",
-        height: "100%",
-        backgroundColor: "#46c3ad",
-    },
-    image: {
-        width: wp('90%'),
-        height: wp('100%'),
-        marginBottom: 30,
-        justifyContent: 'center',
-        resizeMode: "contain"
-    }
-})

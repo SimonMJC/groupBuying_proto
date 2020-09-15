@@ -4,19 +4,23 @@ import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { createDrawerNavigator } from 'react-navigation-drawer';
+import Drawer from './Drawer';
 import LoginScreen from './LoginScreen';
 import HomeScreen from './HomeScreen';
 import SettingScreen from './SettingScreen';
 import NoticeScreen from './NoticeScreen';
 import MyInfoScreen from './MyInfoScreen';
-import Drawer from './Drawer';
 import CustomerCenterScreen from './CustomerCenterScreen'
 import FAQScreen from './FAQScreen'
 import WithdrawScreen from './WithdrawScreen'
 import AlarmScreen from './AlarmScreen'
+import CreateAccountScreen from './CreateAccountScreen'
+import DetailScreen from './DetailScreen'
+
 const HomeStack = createStackNavigator(
     {
         HomeScreen,
+        DetailScreen
         // Drawer
     },
     // if you need.
@@ -27,6 +31,31 @@ const HomeStack = createStackNavigator(
         }),
     }
 );
+
+const CreateAccountStack = createStackNavigator(
+{
+    CreateAccountScreen,
+},
+{
+    defaultNavigationOptions: ({navigation}) => ({
+        title: "🌽회원가입🥦"
+    }),
+    initialRouteName: 'CreateAccountScreen'
+}
+)
+
+// const DetailStack = createStackNavigator(
+//     {
+//         DetailScreen,
+//     },
+//     {
+//         defaultNavigationOptions: ({navigation}) => ({
+//             title: ""
+//         }),
+//         initialRouteName: 'DetailScreen'
+//     }
+// )
+
 const SettingStack = createStackNavigator(
     {
         SettingScreen,
@@ -94,6 +123,7 @@ const AppStack = createStackNavigator(
     {
         // Drawer,
         LoginScreen: LoginScreen,
+        CreateAccountScreen: CreateAccountStack,
         TabNavigator: {
             screen: TabNavigator,
             navigationOptions: ({ navigation }) => ({
