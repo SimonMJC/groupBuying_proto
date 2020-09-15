@@ -14,10 +14,13 @@ import CustomerCenterScreen from './CustomerCenterScreen'
 import FAQScreen from './FAQScreen'
 import WithdrawScreen from './WithdrawScreen'
 import AlarmScreen from './AlarmScreen'
+import DetailScreen from './DetailScreen'
 const HomeStack = createStackNavigator(
     {
         HomeScreen,
         // Drawer
+        DetailScreen
+        
     },
     // if you need.
     // recommend custom header

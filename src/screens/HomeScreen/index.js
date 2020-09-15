@@ -22,7 +22,7 @@ export default class HomeScreen extends Component {
             
                 <View style={styles.wrapContent}>
                     <View style={styles.content}>
-                        <TouchableOpacity onPress={this.inDetailScreen.bind(this)}>
+                        <TouchableOpacity onPress={this.inDetailScreen.bind()}>
                              <Image
                             style={styles.image}
                             source={require('../../img/onion.jpg')}/>
