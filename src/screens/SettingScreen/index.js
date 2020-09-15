@@ -14,6 +14,7 @@ export default class SettingScreen extends Component{
     //알람설정
     _alarm(){
         this.props.navigation.navigate('AlarmScreen')
+  
     }
     //내정보
     _userInfo(){

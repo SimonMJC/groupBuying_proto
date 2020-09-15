@@ -13,8 +13,10 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 const DetailScreen = () => {
     return(
-        <ScrollView >
+        <ScrollView>
+             
              <View>
+                 
                <View>
                       <Text>상품 상세정보</Text>
                     <TextInput></TextInput>

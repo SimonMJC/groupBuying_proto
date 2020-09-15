@@ -31,6 +31,7 @@ const CreateAccountScreen = () => {
              <View style={styles.container}>
                <View>
                       <Text style={styles.text}>이메일</Text>
+                      <Text style={styles.text}></Text>
                     <TextInput></TextInput>
                  </View>
             

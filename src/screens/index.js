@@ -29,6 +29,7 @@ const HomeStack = createStackNavigator(
         defaultNavigationOptions: ({navigation}) => ({
             title: '🥕🥬공동구매 목록🥑🍆',
         }),
+        initialRouteName: 'HomeScreen'
     }
 );
 
@@ -44,17 +45,18 @@ const CreateAccountStack = createStackNavigator(
 }
 )
 
-// const DetailStack = createStackNavigator(
-//     {
-//         DetailScreen,
-//     },
-//     {
-//         defaultNavigationOptions: ({navigation}) => ({
-//             title: ""
-//         }),
-//         initialRouteName: 'DetailScreen'
-//     }
-// )
+const DetailStack = createStackNavigator(
+    {
+        DetailScreen,
+    },
+    {
+        defaultNavigationOptions: ({navigation}) => ({
+            title: ""
+        }),
+        initialRouteName: 'DetailScreen'
+    }
+)
+
 
 const SettingStack = createStackNavigator(
     {
