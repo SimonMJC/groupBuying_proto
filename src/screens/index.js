@@ -102,10 +102,9 @@ const AppStack = createStackNavigator(
                 header: null
             }),
         },
-        
     },
     {
-        // initialRouteName: 'LoginScreen'
+// initialRouteName: 'LoginScreen'
     }
 );
 

@@ -13,17 +13,21 @@ import { withNavigation } from 'react-navigation';
 // import axios from 'axios';
 
 export default class HomeScreen extends Component {
-
+    inDetailScreen(){
+        this.props.navigation.navigate('DetailScreen')
+    }
     render() {
         return (
             <ScrollView style={styles.container}>
             
                 <View style={styles.wrapContent}>
                     <View style={styles.content}>
-                        <Image
+                        <TouchableOpacity onPress={this.inDetailScreen.bind(this)}>
+                             <Image
                             style={styles.image}
-                            source={require('../../img/onion.jpg')}
-                        />
+                            source={require('../../img/onion.jpg')}/>
+                            </TouchableOpacity>
+                       
                     </View>
                 </View>
                 <View style={styles.wrapContent}>
