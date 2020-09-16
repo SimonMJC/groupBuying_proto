@@ -33,5 +33,8 @@ target 'ReProto-tvOS' do
 end
 # add the Firebase pod for Google Analytics
 pod 'Firebase/Analytics'
+permissions_path = '../node_modules/react-native-permissions/ios'
+pod 'Permission-Camera', :path => "#{permissions_path}/Camera.podspec"
+pod 'Permission-PhotoLibrary', :path => "#{permissions_path}/PhotoLibrary.podspec"
 # add pods for any other desired Firebase products
 # https://firebase.google.com/docs/ios/setup#available-pods

@@ -16,6 +16,8 @@ import WithdrawScreen from './WithdrawScreen'
 import AlarmScreen from './AlarmScreen'
 import CreateAccountScreen from './CreateAccountScreen'
 import DetailScreen from './DetailScreen'
+import SellerFormScreen from './SellerFormScreen'
+
 
 const HomeStack = createStackNavigator(
     {
@@ -57,7 +59,6 @@ const DetailStack = createStackNavigator(
     }
 )
 
-
 const SettingStack = createStackNavigator(
     {
         SettingScreen,
@@ -66,18 +67,38 @@ const SettingStack = createStackNavigator(
         CustomerCenterScreen,
         FAQScreen,
         WithdrawScreen,
-        AlarmScreen
+        AlarmScreen,
+        SellerFormScreen
+        
+        // SellerFormScreen
         
 
     },
     {
         defaultNavigationOptions: ({navigation}) => ({
             title: '🥦🧄환경설정🌽🧅',
+            headerShown: true
         }),
         initialRouteName: 'SettingScreen',
+        navigationOptions: ({SellerFormScreen}) => ({
+            headerShown: true
+        })
     }
 );
 
+const SellFormStack = createStackNavigator(
+    {
+    SellerFormScreen,
+    
+},
+{
+    defaultNavigationOptions:({navigation})=> ({
+        title: 'form',
+        headerShown: false
+    }), 
+    initialRouteName: 'Form'
+}
+)
 //TODO: 드로어는 당분간 반려합니다
 // const MenuDrawer = createDrawerNavigator(
 //     {

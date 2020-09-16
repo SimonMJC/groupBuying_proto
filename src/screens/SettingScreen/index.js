@@ -8,9 +8,30 @@ import {
 } from 'react-native';
 import { StackActions, NavigationActions } from 'react-navigation';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {PERMISSIONS, RESULTS, request} from 'react-native-permission'
+//***************PERMISSION**************//
 
 export default class SettingScreen extends Component{
+    //판매자 게시글 폼
+    /*******TODO: 화면은 이동, catch 로만 넘어감*/
+     _form = async () => {
+        this.props.navigation.navigate('SellerFormScreen')
+
+    try {
+      const result = await request(PERMISSIONS.IOS.PHOTO_LIBRARY);
+      if (result === RESULTS.GRANTED) {
+        // do something
+      }
+    } catch (error) {
+      console.log('askPermission', error);
+    //   console.log('result', result)
+    }
+  }
    
+    // _form(){
+    //     this.props.navigation.navigate('SellerFormScreen')
+        
+    // }
     //알람설정
     _alarm(){
         this.props.navigation.navigate('AlarmScreen')
@@ -62,6 +83,12 @@ export default class SettingScreen extends Component{
         return (//⚡️💬
             <View style={styles.container}>
                   
+                  <TouchableOpacity 
+                    style={styles.wrapButton}
+                    onPress={this._form.bind(this)}>
+                    <Text>🛎 판매 게시글 폼</Text>
+                </TouchableOpacity>
+
                   <TouchableOpacity 
                     style={styles.wrapButton}
                     onPress={this._alarm.bind(this)}>

@@ -10,13 +10,17 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-community/cameraroll": "4.0.0",
     "@react-native-community/google-signin": "4.0.3",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/bottom-tabs": "5.8.0",
+    "package": "1.0.1",
     "react": "16.13.1",
     "react-native": "0.63.2",
     "react-native-gesture-handler": "1.8.0",
     "react-native-google-signin": "2.1.1",
+    "react-native-permission": "0.0.1",
+    "react-native-permissions": "2.2.0",
     "react-native-reanimated": "1.13.0",
     "react-native-responsive-screen": "1.4.1",
     "react-native-safe-area-context": "3.1.7",
