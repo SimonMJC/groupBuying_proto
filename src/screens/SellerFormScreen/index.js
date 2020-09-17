@@ -6,9 +6,11 @@ import {
     StyleSheet,
     ScrollView, 
     Alert,
-    
+    Keyboard,
     PixelRatio,
-    Image
+    Image,
+    KeyboardAvoidingView,
+    TouchableWithoutFeedback
 } from 'react-native';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
@@ -18,7 +20,7 @@ import ImagePicker from 'react-native-image-picker'
 
 
   
-//***************PERMISSION**************//
+/**************PERMISSION**************/
 // const askPermission = async () => {
 //     try {
 //       const result = await request(PERMISSIONS.IOS.PHOTO_LIBRARY);
@@ -58,7 +60,8 @@ export default class SellerFormScreen extends Component{
         this.selectPhotoTapped = this.selectPhotoTapped.bind(this);
         // this.selectVideoTapped = this.selectVideoTapped.bind(this);
       }
-    
+     
+      /****Image Picker Function****/
       selectPhotoTapped() {
         const options = {
           quality: 1.0,
@@ -89,38 +92,12 @@ export default class SellerFormScreen extends Component{
         });
       }
 
-    // _getPhotos = async () => {
-    //     try {
-    //       const {edges} = await CameraRoll.getPhotos({
-    //         first: 10,
-    //       });
-    //       Alert.alert('try')
-    //       console.log('📸', edges);
-          
-    
-    //     } catch (error) {
-    //       console.log('getPhoto', error);
-    //       Alert.alert('catch')
-    //     }
-    //   }
-
-    // _handleButtonPress = () => {
-    // CameraRoll.getPhotos({
-    //     first: 20,
-    //     assetType: 'Photos',
-    //   })
-    //   .then(r => {
-    //     this.setState({ photos: r.edges });
-    //   })
-    //   .catch((err) => {
-    //      //Error Loading Images
-    //      console.log('Error!')
-    //   });
-    // };
-
 render(){
         return (
-            <ScrollView style={styles.scrollcontainer}>
+          <KeyboardAvoidingView style={styles.allview}
+           behavior={Platform.OS == "ios" ? "padding" : "height"}>
+             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+             <ScrollView style={styles.scrollcontainer} keyboardDismissMode="on-drag">
                 <View>
                
 
@@ -130,32 +107,34 @@ render(){
                    </Text>
                </View>
                
-               <View style={styles.formArea}>
+               {/* <View style={styles.formArea}>
                     <TouchableOpacity style={styles.wrapButton} onPress={this._getPhotos}>
                     <Text style={styles.buttonTitle}>사진 가져오기</Text>
                     </TouchableOpacity>
-                {/* or this.getPhotos.bind(this) */}
-                </View>
-
-
-                <View style={styles.formArea}>
-                <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
-          <View
-            style={[styles.avatar, styles.avatarContainer, {marginBottom: 20}]}>
-            {this.state.avatarSource === null ? (
-              <Text>Select a Photo</Text>
-            ) : (
-              <Image style={styles.avatar} source={this.state.avatarSource} />
-            )}
-          </View>
-        </TouchableOpacity>
-                </View>
+                </View> */}
 
                <View style={styles.formArea}>
                     <TouchableOpacity style={styles.wrapButton}>
                         <Text style={styles.buttonTitle}>폼 선택하기</Text>
                     </TouchableOpacity>
                 </View>
+
+                  {/********** IMAGE PICKER BUTTON **********/}
+                <View style={styles.formArea}>
+                <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
+          <View
+            style={[styles.imageArea, styles.avatarContainer, {marginBottom: 20}]}>
+            {this.state.avatarSource === null ? (
+              <Text style={styles.imageTitle}>사진을 선택하세요</Text>
+            ) : (
+              <Image style={styles.imageArea} source={this.state.avatarSource} />
+            )}
+          </View>
+        </TouchableOpacity>
+        
+                </View>
+
+
 
                 <View style={styles.formArea}>
                 <TextInput style={styles.textForm} placeholder={"상품명"}></TextInput>
@@ -182,17 +161,7 @@ render(){
                 fontSize: wp('4%'),
                 fontWeight:'bold',
                 borderBottomWidth: 0.5}}>상품 내용 작성</Text>
-             <TextInput style={{ borderWidth: 0.5,
-        backgroundColor:'white',
-        borderColor: '#46c3ad',
-        width: '100%',
-        height: hp('35%'),
-        alignItems:'flex-start',
-        justifyContent: 'flex-start',
-        paddingLeft: 5,
-        paddingRight: 5,
-        marginBottom: 5,
-        marginTop:15}} placeholder={"작성"}></TextInput>
+             <TextInput style={styles.contentIntput} placeholder={"작성"}></TextInput>
                </View>
 
                <View style={styles.formArea}>
@@ -203,19 +172,27 @@ render(){
 
                </View>
             </ScrollView>
+
+             </TouchableWithoutFeedback>
+          </KeyboardAvoidingView>
+            
         );
 }
     
 }
 
 const styles = StyleSheet.create({
+  allview:{ flex: 1,
+  },
     scrollcontainer: {
         flex: 1,
         backgroundColor: 'white',
         paddingLeft: wp('10%'),
         paddingRight: wp('10%'),
-        // justifyContent: 'center',
-        // alignItems: 'center',
+    },
+    horizonScroll:{
+      paddingLeft: wp('10%'),
+      paddingRight: wp('10%'),
     },
     container: {
         flex: 1,
@@ -255,6 +232,10 @@ const styles = StyleSheet.create({
         width: '100%',
         paddingBottom: wp('5%')
     },
+    horizonArea:{
+      width: '100%',
+        paddingBottom: wp('5%')
+    },
     textForm: {
         borderWidth: 0.5,
         backgroundColor:'white',
@@ -264,7 +245,9 @@ const styles = StyleSheet.create({
         paddingLeft: 5,
         paddingRight: 5,
         marginBottom: 5,
-        marginTop:15
+        marginTop:15,
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     buttonArea: {
         width: '100%',
@@ -277,68 +260,46 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
-    sign_button:{
-        backgroundColor: '#46c3ad',
-        width: "100%",
-        height: "100%",
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
    
     buttonTitle: {
         color: '#46c3ad',
         fontWeight: 'bold',
         // fontSize: 15
     },
+    imageArea:{
+      width: '100%',
+      height: hp('35%')
+    },
+    imageTitle:{
+      color: '#46c3ad',
+      fontWeight: 'bold',
+      fontSize: 20
+    },
     avatarContainer: {
-        borderColor: '#9B9B9B',
+        borderColor: '#46c3ad',
         borderWidth: 1 / PixelRatio.get(),
         justifyContent: 'center',
         alignItems: 'center',
       },
       avatar: {
         borderRadius: 75,
-        width: 150,
+        width: 300,
         height: 150,
       },
-     // container:{
-    //     flex:1,
-    //     padding:10
-    // },
-    // formArea: {
-    //     width: '100%',
-    //     paddingBottom: wp('10%')
-    // },
-    // textForm: {
-    //     borderWidth: 0.5,
-    //     backgroundColor:'white',
-    //     borderColor: '#46c3ad',
-    //     width: '80%',
-    //     justifyContent:'center',
-    //     height: hp('5%'),
-    //     paddingLeft: 5,
-    //     paddingRight: 5,
-    //     marginBottom: 5,
-    //     marginLeft:5,
-    //     marginRight:5,
-    //     marginEnd:50
-    // },
-    // inputText:{
-    //     borderWidth:1.5,
-    //     backgroundColor:'white',
-    //     borderColor:'#46c3ad',
-    //     borderRadius: 8,
-    //     paddingLeft: 16,
-    //     paddingRight: 16,
-    //     height:40,
-    //     width: 300,
-        
-    // },
-    // text:{
-    //     fontWeight:'bold',
-    //     fontSize:25,
-    //     marginBottom:50
-    // },
+
+     contentIntput:{
+      borderWidth: 0.5,
+      backgroundColor:'white',
+      borderColor: '#46c3ad',
+      width: '100%',
+      height: hp('35%'),
+      alignItems:'flex-start',
+      justifyContent: 'flex-start',
+      paddingLeft: 5,
+      paddingRight: 5,
+      marginBottom: 5,
+      marginTop:15
+     }
+  
 })
 
-// export default SellerFormScreen

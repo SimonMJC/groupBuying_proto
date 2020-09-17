@@ -61,7 +61,7 @@ export default class SettingScreen extends Component{
       }
     } catch (error) {
       console.log('askPermission', error);
-      Alert.alert('error!')
+    //   Alert.alert('error!')
     //   console.log('result', result)
     }
   }
