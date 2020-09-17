@@ -4,13 +4,20 @@ import {
     Text,
     Button,
     StyleSheet,
-    ScrollView
+    ScrollView, 
+    Alert,
+    
+    PixelRatio,
+    Image
 } from 'react-native';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {PERMISSIONS, RESULTS, request} from 'react-native-permission'
 import CameraRoll from '@react-native-community/cameraroll'
+import ImagePicker from 'react-native-image-picker'
 
+
+  
 //***************PERMISSION**************//
 // const askPermission = async () => {
 //     try {
@@ -36,21 +43,66 @@ import CameraRoll from '@react-native-community/cameraroll'
 //          //Error Loading Images
 //       });
 //     };
-// const 
+
 
 export default class SellerFormScreen extends Component{
 
-    _getPhotos = async () => {
-        try {
-          const {edges} = await CameraRoll.getPhotos({
-            first: 10,
-          });
-          console.log('📸', edges);
+    state = {
+        avatarSource: null,
+        // videoSource: null,
+      };
     
-        } catch (error) {
-          console.log('getPhoto', error);
-        }
+      constructor(props) {
+        super(props);
+    
+        this.selectPhotoTapped = this.selectPhotoTapped.bind(this);
+        // this.selectVideoTapped = this.selectVideoTapped.bind(this);
       }
+    
+      selectPhotoTapped() {
+        const options = {
+          quality: 1.0,
+          maxWidth: 500,
+          maxHeight: 500,
+          storageOptions: {
+            skipBackup: true,
+          },
+        };
+        ImagePicker.showImagePicker(options, response => {
+          console.log('Response = ', response);
+    
+          if (response.didCancel) {
+            console.log('User cancelled photo picker');
+          } else if (response.error) {
+            console.log('ImagePicker Error: ', response.error);
+          } else if (response.customButton) {
+            console.log('User tapped custom button: ', response.customButton);
+          } else {
+            let source = {uri: response.uri};
+            // You can also display the image using data:
+            // let source = { uri: 'data:image/jpeg;base64,' + response.data };
+    
+            this.setState({
+              avatarSource: source,
+            });
+          }
+        });
+      }
+
+    // _getPhotos = async () => {
+    //     try {
+    //       const {edges} = await CameraRoll.getPhotos({
+    //         first: 10,
+    //       });
+    //       Alert.alert('try')
+    //       console.log('📸', edges);
+          
+    
+    //     } catch (error) {
+    //       console.log('getPhoto', error);
+    //       Alert.alert('catch')
+    //     }
+    //   }
 
     // _handleButtonPress = () => {
     // CameraRoll.getPhotos({
@@ -65,11 +117,13 @@ export default class SellerFormScreen extends Component{
     //      console.log('Error!')
     //   });
     // };
+
 render(){
         return (
             <ScrollView style={styles.scrollcontainer}>
                 <View>
                
+
                <View style={styles.titleArea}>
                    <Text style={styles.title}>
                        판매 페이지 폼
@@ -81,6 +135,20 @@ render(){
                     <Text style={styles.buttonTitle}>사진 가져오기</Text>
                     </TouchableOpacity>
                 {/* or this.getPhotos.bind(this) */}
+                </View>
+
+
+                <View style={styles.formArea}>
+                <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
+          <View
+            style={[styles.avatar, styles.avatarContainer, {marginBottom: 20}]}>
+            {this.state.avatarSource === null ? (
+              <Text>Select a Photo</Text>
+            ) : (
+              <Image style={styles.avatar} source={this.state.avatarSource} />
+            )}
+          </View>
+        </TouchableOpacity>
                 </View>
 
                <View style={styles.formArea}>
@@ -222,6 +290,17 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         // fontSize: 15
     },
+    avatarContainer: {
+        borderColor: '#9B9B9B',
+        borderWidth: 1 / PixelRatio.get(),
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      avatar: {
+        borderRadius: 75,
+        width: 150,
+        height: 150,
+      },
      // container:{
     //     flex:1,
     //     padding:10

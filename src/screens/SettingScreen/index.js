@@ -14,16 +14,54 @@ import {PERMISSIONS, RESULTS, request} from 'react-native-permission'
 export default class SettingScreen extends Component{
     //판매자 게시글 폼
     /*******TODO: 화면은 이동, catch 로만 넘어감*/
-     _form = async () => {
-        this.props.navigation.navigate('SellerFormScreen')
 
-    try {
+
+// _form = async () => {
+//     check(PERMISSIONS.IOS.PHOTO_LIBRARY).then((result) => {
+//         switch (result) {
+//             case RESULTS.UNAVAILABLE:
+//                 console.log(
+//                     'This feature is not available (on this device / in this context)',
+//                   );
+//                   break;
+//                 case RESULTS.DENIED:
+//                   console.log(
+//                     'The permission has not been requested / is denied but requestable',
+//                   );
+//                   break;
+//                 case RESULTS.GRANTED:
+//                   console.log('The permission is granted');
+//                   break;
+//                 case RESULTS.BLOCKED:
+//                   console.log('The permission is denied and not requestable anymore');
+//                   break;
+//         }
+//     })
+//     .catch((error) => {
+//         Alert.alert('error')
+//     })
+// }
+
+
+     _form = async () => {
+
+    try {        this.props.navigation.navigate('SellerFormScreen')
+
       const result = await request(PERMISSIONS.IOS.PHOTO_LIBRARY);
       if (result === RESULTS.GRANTED) {
-        // do something
+        Alert.alert('success!')
+
+        // do something        
+      }else if(result === RESULTS.DENIED){
+          Alert.alert('denied')
+      }else if(result === RESULTS.BLOCKED){
+          Alert.alert('blocked')
+      }else if(result === RESULTS.UNAVAILABLE){
+          Alert.alert('unavailable')
       }
     } catch (error) {
       console.log('askPermission', error);
+      Alert.alert('error!')
     //   console.log('result', result)
     }
   }
