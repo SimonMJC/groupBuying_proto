@@ -14,37 +14,7 @@ import {
 } from 'react-native';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import {PERMISSIONS, RESULTS, request} from 'react-native-permission'
-import CameraRoll from '@react-native-community/cameraroll'
 import ImagePicker from 'react-native-image-picker'
-
-
-  
-/**************PERMISSION**************/
-// const askPermission = async () => {
-//     try {
-//       const result = await request(PERMISSIONS.IOS.PHOTO_LIBRARY);
-//       if (result === RESULTS.GRANTED) {
-//         // do something
-//       }
-//     } catch (error) {
-//       console.log('askPermission', error);
-//     }
-//   }
-
-
-// _handleButtonPress = () => {
-//     CameraRoll.getPhotos({
-//         first: 20,
-//         assetType: 'Photos',
-//       })
-//       .then(r => {
-//         this.setState({ photos: r.edges });
-//       })
-//       .catch((err) => {
-//          //Error Loading Images
-//       });
-//     };
 
 
 export default class SellerFormScreen extends Component{
@@ -84,7 +54,6 @@ export default class SellerFormScreen extends Component{
             let source = {uri: response.uri};
             // You can also display the image using data:
             // let source = { uri: 'data:image/jpeg;base64,' + response.data };
-    
             this.setState({
               avatarSource: source,
             });
@@ -94,25 +63,20 @@ export default class SellerFormScreen extends Component{
 
 render(){
         return (
+          
           <KeyboardAvoidingView style={styles.allview}
            behavior={Platform.OS == "ios" ? "padding" : "height"}>
              <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
              <ScrollView style={styles.scrollcontainer} keyboardDismissMode="on-drag">
                 <View>
-               
-
+             
                <View style={styles.titleArea}>
                    <Text style={styles.title}>
                        판매 페이지 폼
                    </Text>
                </View>
-               
-               {/* <View style={styles.formArea}>
-                    <TouchableOpacity style={styles.wrapButton} onPress={this._getPhotos}>
-                    <Text style={styles.buttonTitle}>사진 가져오기</Text>
-                    </TouchableOpacity>
-                </View> */}
 
+{/************ Form Chooser Button ************/}
                <View style={styles.formArea}>
                     <TouchableOpacity style={styles.wrapButton}>
                         <Text style={styles.buttonTitle}>폼 선택하기</Text>
@@ -127,11 +91,10 @@ render(){
             {this.state.avatarSource === null ? (
               <Text style={styles.imageTitle}>사진을 선택하세요</Text>
             ) : (
-              <Image style={styles.imageArea} source={this.state.avatarSource} />
+              <Image style={styles.imageArea} source={this.state.avatarSource}/>
             )}
           </View>
         </TouchableOpacity>
-        
                 </View>
 
 
@@ -156,6 +119,8 @@ render(){
                 <TextInput style={styles.textForm} placeholder={"3차 할인율"}></TextInput>
                 </View>
                
+
+               {/************ Main Contents Input ************/}
                <View style={styles.formArea}>
                 <Text style={{ color: "#46c3ad",
                 fontSize: wp('4%'),
@@ -164,6 +129,8 @@ render(){
              <TextInput style={styles.contentIntput} placeholder={"작성"}></TextInput>
                </View>
 
+
+              {/************ Upload Button ************/}
                <View style={styles.formArea}>
                     <TouchableOpacity style={styles.wrapButton}>
                         <Text style={styles.buttonTitle}>상품 게시!</Text>
