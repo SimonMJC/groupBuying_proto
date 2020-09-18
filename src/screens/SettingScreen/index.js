@@ -124,7 +124,7 @@ export default class SettingScreen extends Component{
                   <TouchableOpacity 
                     style={styles.wrapButton}
                     onPress={this._form.bind(this)}>
-                    <Text>🛎 판매 게시글 폼</Text>
+                    <Text>📝 판매 게시글 폼</Text>
                 </TouchableOpacity>
 
                   <TouchableOpacity 

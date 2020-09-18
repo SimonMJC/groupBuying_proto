@@ -29,19 +29,19 @@ const HomeStack = createStackNavigator(
     // recommend custom header
     {
         defaultNavigationOptions: ({navigation}) => ({
-            title: '🥕🥬공동구매 목록🥑🍆',
+            title: '공동구매 목록',
         }),
         initialRouteName: 'HomeScreen'
     }
 );
-
+// 🥕🥬🥑🍆🌽🥦
 const CreateAccountStack = createStackNavigator(
 {
     CreateAccountScreen,
 },
 {
     defaultNavigationOptions: ({navigation}) => ({
-        title: "🌽회원가입🥦"
+        title: "회원가입"
     }),
     initialRouteName: 'CreateAccountScreen'
 }
@@ -76,7 +76,7 @@ const SettingStack = createStackNavigator(
     },
     {
         defaultNavigationOptions: ({navigation}) => ({
-            title: '🥦🧄환경설정🌽🧅',
+            title: '환경설정',
             headerShown: true
         }),
         initialRouteName: 'SettingScreen',
