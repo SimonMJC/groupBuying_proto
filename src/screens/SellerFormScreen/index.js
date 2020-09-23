@@ -15,8 +15,10 @@ import {
 } from 'react-native';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import ImagePicker from 'react-native-image-picker'
+// import ImagePicker from 'react-native-image-picker'
+import ImagePicker from 'react-native-customized-image-picker'
 import { block } from 'react-native-reanimated';
+import { checkMultiple } from 'react-native-permissions';
 
 export default class SellerFormScreen extends Component {
 
@@ -29,46 +31,69 @@ export default class SellerFormScreen extends Component {
     this.setState({ modalVisible: visible })
   }
 
-  constructor(props) {
-    super(props);
+  // constructor(props) {
+  //   super(props);
 
-    this.selectPhotoTapped = this.selectPhotoTapped.bind(this);
-    // this.selectVideoTapped = this.selectVideoTapped.bind(this);
+  //   // this.selectPhotoTapped = this.selectPhotoTapped.bind(this);
+  //   // this.selectVideoTapped = this.selectVideoTapped.bind(this);
+  // }
+
+  constructor(){
+    super()
+    this.state={
+      images: null
+    }
   }
-
   formAlert(){
     Alert.alert('')
   }
   /****Image Picker Function****/
-  selectPhotoTapped() {
-    const options = {
-      quality: 1.0,
-      maxWidth: 500,
-      maxHeight: 500,
-      storageOptions: {
-        skipBackup: true,
-      },
-    };
-    ImagePicker.showImagePicker(options, response => {
-      console.log('Response = ', response);
+  // selectPhotoTapped() {
+  //   const options = {
+  //     quality: 1.0,
+  //     maxWidth: 500,
+  //     maxHeight: 500,
+  //     storageOptions: {
+  //       skipBackup: true,
+  //     },
+  //   };
+  //   ImagePicker.showImagePicker(options, response => {
+  //     console.log('Response = ', response);
+      
 
-      if (response.didCancel) {
-        console.log('User cancelled photo picker');
-      } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
-      } else if (response.customButton) {
-        console.log('User tapped custom button: ', response.customButton);
-      } else {
-        let source = { uri: response.uri };
-        // You can also display the image using data:
-        // let source = { uri: 'data:image/jpeg;base64,' + response.data };
-        this.setState({
-          avatarSource: source,
-        });
-      }
-    });
-  }
-  
+  //     if (response.didCancel) {
+  //       console.log('User cancelled photo picker');
+  //     } else if (response.error) {
+  //       console.log('ImagePicker Error: ', response.error);
+  //     } else if (response.customButton) {
+  //       console.log('User tapped custom button: ', response.customButton);
+  //     } else {
+  //       let source = { uri: response.uri };
+  //       // You can also display the image using data:
+  //       // let source = { uri: 'data:image/jpeg;base64,' + response.data };
+  //       this.setState({
+  //         avatarSource: source,
+  //       });
+  //     }
+  //   });
+  // }
+
+  /****** Image Multiple Choose Function ******/
+
+pickMultiple() {
+  ImagePicker.openPicker({
+      isCamera: true,
+      multiple: true,
+  }).then(images => {
+      this.setState({
+          images: images.map(i => {
+              console.log('received image', i);
+              return {uri: i.path, width: i.width, height: i.height, mime: i.mime};
+          }),
+      });
+  }).catch(e => alert(e));
+}
+
   render() {
     const { modalVisible } = this.state
     return (
@@ -178,7 +203,7 @@ export default class SellerFormScreen extends Component {
 
               {/********** IMAGE PICKER BUTTON **********/}
               <View style={styles.formArea}>
-                <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
+                {/* <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
                   <View
                     style={[styles.imageArea, styles.avatarContainer, { marginBottom: 20 }]}>
                     {this.state.avatarSource === null ? (
@@ -187,7 +212,10 @@ export default class SellerFormScreen extends Component {
                         <Image style={styles.imageArea} source={this.state.avatarSource} />
                       )}
                   </View>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
+                <TouchableOpacity onPress={this.pickMultiple.bind(this)} style={styles.imageArea}>
+                <Text style={styles.imageTitle}>Select Multiple</Text>
+            </TouchableOpacity>
               </View>
 
 
