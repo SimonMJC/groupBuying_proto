@@ -11,7 +11,8 @@ import {
   Image,
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
-  Modal
+  Modal,
+  FlatList
 } from 'react-native';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
@@ -38,8 +39,8 @@ export default class SellerFormScreen extends Component {
   //   // this.selectVideoTapped = this.selectVideoTapped.bind(this);
   // }
 
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state={
       images: null
     }
@@ -81,6 +82,7 @@ export default class SellerFormScreen extends Component {
   /****** Image Multiple Choose Function ******/
 
 pickMultiple() {
+  
   ImagePicker.openPicker({
       isCamera: true,
       multiple: true,
@@ -92,6 +94,21 @@ pickMultiple() {
           }),
       });
   }).catch(e => alert(e));
+}
+scaledHeight(oldW, oldH, newW) {
+  return (oldH / oldW) * newW;
+}
+
+renderImage(image) {
+  return <Image style={{width: 300, height: 300, resizeMode: 'contain'}} source={image}/>;
+}
+
+renderAsset(image) {
+  if (image.mime && image.mime.toLowerCase().indexOf('video/') !== -1) {
+      return this.renderVideo(image.uri);
+  }
+
+  return this.renderImage(image);
 }
 
   render() {
@@ -213,10 +230,14 @@ pickMultiple() {
                       )}
                   </View>
                 </TouchableOpacity> */}
-                <TouchableOpacity onPress={this.pickMultiple.bind(this)} style={styles.imageArea}>
-                <Text style={styles.imageTitle}>Select Multiple</Text>
+                <TouchableOpacity onPress={this.pickMultiple.bind(this)} style={styles.wrapButton}>
+                <Text style={styles.buttonTitle}>사진을 선택하세요</Text>
             </TouchableOpacity>
-              </View>
+            </View>
+            <ScrollView horizontal={true} style={styles.formArea}>
+                {this.state.images ? this.state.images.map(i => <View key={i.uri}>{this.renderAsset(i)}</View>) : null}
+            </ScrollView>
+              
 
 
 
