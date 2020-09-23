@@ -219,17 +219,9 @@ renderAsset(image) {
               </View>
 
               {/********** IMAGE PICKER BUTTON **********/}
+              {/********** TODO: reDesign **********/}
               <View style={styles.formArea}>
-                {/* <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
-                  <View
-                    style={[styles.imageArea, styles.avatarContainer, { marginBottom: 20 }]}>
-                    {this.state.avatarSource === null ? (
-                      <Text style={styles.imageTitle}>사진을 선택하세요</Text>
-                    ) : (
-                        <Image style={styles.imageArea} source={this.state.avatarSource} />
-                      )}
-                  </View>
-                </TouchableOpacity> */}
+                
                 <TouchableOpacity onPress={this.pickMultiple.bind(this)} style={styles.wrapButton}>
                 <Text style={styles.buttonTitle}>사진을 선택하세요</Text>
             </TouchableOpacity>
