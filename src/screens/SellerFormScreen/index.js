@@ -61,8 +61,8 @@ export default class SellerFormScreen extends Component {
         });
       }
     });
+  
   }
-
   render() {
 
     const { modalVisible } = this.state

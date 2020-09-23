@@ -3,19 +3,43 @@ import {
     View,
     Text,
     Button,
-    StyleSheet
+    StyleSheet, 
+    TouchableOpacity
 } from 'react-native';
 import LoginScreen from '../LoginScreen'
 import { ScrollView } from 'react-native-gesture-handler';
-export default class MyInfoScreen extends Component {
 
+export default class MyInfoScreen extends Component {
+// constructor(){
+//     super()
+//     this.state={
+//         image: null,
+//         images: null
+//     }
+// }
+
+
+
+ 
 
     render() {
         return (
-            <View style={styles.container}>
-            <ScrollView style={styles.scroll}>
-
-            </ScrollView>
+            <View style={styled.container}>
+          {/* <ScrollView>
+          {this.state.image ? this.renderAsset(this.state.image) : null}
+          {this.state.images
+            ? this.state.images.map((i) => (
+                <View key={i.uri}>{this.renderAsset(i)}</View>
+              ))
+            : null}
+          
+        </ScrollView>
+          <TouchableOpacity
+          onPress={this.pickMultiple.bind()}
+          style={styles.button}
+        >
+          <Text style={styles.text}>Select Multiple</Text>
+        </TouchableOpacity> */}
             </View>
         );
     }
