@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
+  Button,
   StyleSheet,
   ScrollView,
   Alert,
@@ -15,6 +16,7 @@ import {
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import ImagePicker from 'react-native-image-picker'
+import { block } from 'react-native-reanimated';
 
 export default class SellerFormScreen extends Component {
 
@@ -34,6 +36,9 @@ export default class SellerFormScreen extends Component {
     // this.selectVideoTapped = this.selectVideoTapped.bind(this);
   }
 
+  formAlert(){
+    Alert.alert('')
+  }
   /****Image Picker Function****/
   selectPhotoTapped() {
     const options = {
@@ -46,6 +51,7 @@ export default class SellerFormScreen extends Component {
     };
     ImagePicker.showImagePicker(options, response => {
       console.log('Response = ', response);
+
       if (response.didCancel) {
         console.log('User cancelled photo picker');
       } else if (response.error) {
@@ -61,12 +67,10 @@ export default class SellerFormScreen extends Component {
         });
       }
     });
-  
   }
+  
   render() {
-
     const { modalVisible } = this.state
-
     return (
 
       <KeyboardAvoidingView style={styles.allview}
@@ -110,35 +114,36 @@ export default class SellerFormScreen extends Component {
                     width: '80%',
                     paddingBottom: wp('5%')
                   }}>
+                    <Text style={{ marginBottom: 15, textAlign: "center", fontWeight: "bold", color: "#46c3ad"}}>원하는 폼을 선택하세요</Text>
+                    
+                    <View style ={styles.formArea}>
+                       <TouchableOpacity style={styles.wrapButton} onPress={()=> {Alert.alert('Flat Form을 선택!')}}>
+                      <Text style={styles.buttonTitle}>Flat Form</Text>
+                    </TouchableOpacity>
+                    </View>
+                    <View style ={styles.formArea}>
+                       <TouchableOpacity style={styles.wrapButton} onPress={() => {Alert.alert('Basic Form을 선택!')}}>
+                      <Text style={styles.buttonTitle}>Basic Form</Text>
+                    </TouchableOpacity>
+                    </View>
+                    <View style ={{...styles.formArea}}>
+                       <TouchableOpacity style={styles.wrapButton} onPress={() => {Alert.alert('Colorful Form을 선택!')}}>
+                      <Text style={styles.buttonTitle}>Colorful Form</Text>
+                    </TouchableOpacity>
+                    </View>
+                    <View style ={styles.formArea}>
+                       <TouchableOpacity style={styles.wrapButton} onPress={() => {Alert.alert('Green Form을 선택!')}}>
+                      <Text style={styles.buttonTitle}> Green Form</Text>
+                    </TouchableOpacity>
+                    </View>
+                    <View style ={styles.formArea}>
+                       <TouchableOpacity style={styles.wrapButton} onPress={() => {Alert.alert('Custom Form을 선택!')}}>
+                      <Text style={styles.buttonTitle}>Custom Form</Text>
+                    </TouchableOpacity>
+                    </View>
 
-                    <Text style={{ marginBottom: 15, textAlign: "center", fontWeight: "bold", color: "#46c3ad" }}>원하는 폼을 선택하세요</Text>
-
-                    <View style={styles.formArea}>
-                      <TouchableOpacity style={styles.wrapButton} onPress={() => { Alert.alert('Flat Form을 선택!') }}>
-                        <Text style={styles.buttonTitle}>Flat Form</Text>
-                      </TouchableOpacity>
-                    </View>
-                    <View style={styles.formArea}>
-                      <TouchableOpacity style={styles.wrapButton} onPress={() => { Alert.alert('Basic Form을 선택!') }}>
-                        <Text style={styles.buttonTitle}>Basic Form</Text>
-                      </TouchableOpacity>
-                    </View>
-                    <View style={{ ...styles.formArea }}>
-                      <TouchableOpacity style={styles.wrapButton} onPress={() => { Alert.alert('Colorful Form을 선택!') }}>
-                        <Text style={styles.buttonTitle}>Colorful Form</Text>
-                      </TouchableOpacity>
-                    </View>
-                    <View style={styles.formArea}>
-                      <TouchableOpacity style={styles.wrapButton} onPress={() => { Alert.alert('Green Form을 선택!') }}>
-                        <Text style={styles.buttonTitle}> Green Form</Text>
-                      </TouchableOpacity>
-                    </View>
-                    <View style={styles.formArea}>
-                      <TouchableOpacity style={styles.wrapButton} onPress={() => { Alert.alert('Custom Form을 선택!') }}>
-                        <Text style={styles.buttonTitle}>Custom Form</Text>
-                      </TouchableOpacity>
-                    </View>
-
+                   
+                    
                     <TouchableOpacity
                       style={{
                         borderRadius: 0,
@@ -147,19 +152,20 @@ export default class SellerFormScreen extends Component {
                         backgroundColor: "white",
                         borderWidth: 2,
                         borderColor: "#46c3ad"
+                        
                       }}
                       onPress={() => {
                         this.setModalVisible(!modalVisible)
                       }}
                     >
-                      <Text style={{ color: "#46c3ad", fontWeight: "bold" }}>닫기</Text>
+                      <Text style={{color: "#46c3ad", fontWeight: "bold"}}>닫기</Text>
+
                     </TouchableOpacity>
-                    
                   </View>
                 </View>
               </Modal>
 
-              {/************ CHOOSE FORM BUTTON ************/}
+              {/************ Form Chooser Button ************/}
               <View style={styles.formArea}>
                 <TouchableOpacity
                   style={styles.wrapButton}
@@ -184,7 +190,8 @@ export default class SellerFormScreen extends Component {
                 </TouchableOpacity>
               </View>
 
-              {/************ TODO: item Information Input ************/}
+
+
               <View style={styles.formArea}>
                 <TextInput style={styles.textForm} placeholder={"상품명"}></TextInput>
               </View>
@@ -206,7 +213,7 @@ export default class SellerFormScreen extends Component {
               </View>
 
 
-              {/************ TODO: Main Contents Input ************/}
+              {/************ Main Contents Input ************/}
               <View style={styles.formArea}>
                 <Text style={{
                   color: "#46c3ad",
@@ -218,7 +225,7 @@ export default class SellerFormScreen extends Component {
               </View>
 
 
-              {/************ TODO: Upload Button ************/}
+              {/************ Upload Button ************/}
               <View style={styles.formArea}>
                 <TouchableOpacity style={styles.wrapButton}>
                   <Text style={styles.buttonTitle}>상품 게시!</Text>
@@ -288,14 +295,14 @@ const styles = StyleSheet.create({
   ModalBtnArea: {
     width: '100%',
     paddingBottom: wp('5%'),
-    borderRadius: 10
+    borderRadius:10
   },
   horizonArea: {
     width: '100%',
     paddingBottom: wp('5%')
   },
   textForm: {
-
+  
     borderWidth: 0.5,
     backgroundColor: 'white',
     borderColor: '#46c3ad',
@@ -325,7 +332,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     // fontSize: 15
   },
-
+ 
   imageArea: {
     width: '100%',
     height: hp('35%')
