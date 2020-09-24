@@ -29,10 +29,16 @@ export default class SellerFormScreen extends Component {
     this.setState({ modalVisible: visible })
   }
 
-  pickMultiple() {
+  pickMultiple(cropit) {
     ImagePicker.openPicker({
+      width: 300,
+      height: 300,
       isCamera: true,
       multiple: true,
+      cropping: cropit,
+      isPlayGif: true,
+
+
     }).then(images => {
       this.setState({
         images: images.map(i => {
@@ -47,15 +53,40 @@ export default class SellerFormScreen extends Component {
     return (oldH / oldW) * newW;
   }
 
+  clickImage(){
+    
+   //TODO: Modal을 이용하여 이미지 편집 창 구현 
+    Alert.alert('click the Image')
+    return (
+      <Modal
+      animationType="slide"
+      transparent={true}
+      // visible={modalVisible}
+      onRequestClose={() => {
+        Alert.alert("Modal has been closed")
+      }}>
+        <View style={{
+          
+                  flex: 1, justifyContent: "center",
+                  alignItems: "center", marginTop: 22
+                }}></View>
+
+      </Modal>
+    )
+  }
+
   renderImage(image) {
-    return <Image style={{ width: 300, height: 300, resizeMode: 'contain' }} source={image} />;
+    return(<TouchableOpacity onPress={()=>this.clickImage()}>
+      <Image style={styles.outImage} source={image} />
+    </TouchableOpacity>
+      
+    )
   }
 
   renderAsset(image) {
     if (image.mime && image.mime.toLowerCase().indexOf('video/') !== -1) {
       return this.renderVideo(image.uri);
     }
-
     return this.renderImage(image);
   }
 
@@ -72,6 +103,7 @@ export default class SellerFormScreen extends Component {
                   판매 페이지 폼
                    </Text>
               </View>
+
               {/************ Modal Visible ************/}
               <Modal
                 animationType="slide"
@@ -171,9 +203,13 @@ export default class SellerFormScreen extends Component {
                   <Text style={styles.buttonTitle}>사진을 선택하세요</Text>
                 </TouchableOpacity>
               </View>
-              <ScrollView horizontal={true} style={styles.formArea}>
+
+              {/* <View style={styles.formArea}> */}
+                <ScrollView horizontal={true} >
                 {this.state.images ? this.state.images.map(i => <View key={i.uri}>{this.renderAsset(i)}</View>) : null}
               </ScrollView>
+              {/* </View> */}
+              
 
               <View style={styles.formArea}>
                 <TextInput style={styles.textForm} placeholder={"상품명"}></TextInput>
@@ -244,6 +280,24 @@ const styles = StyleSheet.create({
     paddingRight: wp('10%'),
     justifyContent: 'center'
   },
+  outImage:{
+  //  width: wp('50%'),
+  // width:300,
+   height: 300,
+    // paddingLeft: wp('10%'),
+    // paddingRight: wp('10%'),
+    // marginBottom: 5,
+    // marginTop: 5,
+    margin:10,
+    padding:10,
+    resizeMode: "cover",
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderColor: '#46c3ad',
+    borderWidth: 2
+
+
+  },
   wrapButton: {
     width: '100%',
     height: hp('5%'),
@@ -273,6 +327,14 @@ const styles = StyleSheet.create({
   formArea: {
     width: '100%',
     paddingBottom: wp('5%')
+  },
+  imageArea: {
+    width: '100%',
+    paddingBottom: wp('5%'),
+    paddingRight: wp('5%'),
+    // borderWidth: 0.5,
+    // borderColor:'#46c3ad',
+    height: hp('30%'),
   },
   ModalBtnArea: {
     width: '100%',
@@ -311,10 +373,10 @@ const styles = StyleSheet.create({
     color: '#46c3ad',
     fontWeight: 'bold',
   },
-  imageArea: {
-    width: '100%',
-    height: hp('35%')
-  },
+  // imageArea: {
+  //   width: '100%',
+  //   height: hp('35%')
+  // },
   imageTitle: {
     color: '#46c3ad',
     fontWeight: 'bold',
