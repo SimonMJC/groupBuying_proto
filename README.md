@@ -47,4 +47,17 @@
 ##### 3-7. 고객 센터
 ##### 3-8. 회원 탈퇴
 
+____________________
+#### Development Environment
++ Script Editor: Visual Studio Code 1.48.0
++ Language: JavaScript, Object-C(iOS), Java(Android)
++ Framework/Library: ReactNative 0.63.2, ReactNative-cli 2.0.1
++ Js Runtime: node.js 12.8.1
++ Desktop: Macbook Pro 2019 15ch cto
++ OS: macOS Catalina 10.15.6
++ Launch Device: iPhone11(iOS: 14.0) Simulation for Xcode
++ Source Controll: Git, Github
++ Document Controll: Notion
+
+
 
