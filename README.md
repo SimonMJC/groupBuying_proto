@@ -7,10 +7,9 @@
 + 자체 로그인
 + 구글 로그인
     + How
-        + 구글 제공 로그인 예제를 통해 작업
-            + Xcode(iOS), AndroidStudio(Android) Native 작업 필요 
-            + Google Firebase: https://firebase.google.com/official 
-            + Reference: https://bangc.tistory.com/12
+        + Xcode(iOS), AndroidStudio(Android) Native 작업 필요 
+        + Google Firebase: https://firebase.google.com/official 
+        + Reference: https://bangc.tistory.com/12
 #### 2. Main Tap
 + List, ScrollView
 
