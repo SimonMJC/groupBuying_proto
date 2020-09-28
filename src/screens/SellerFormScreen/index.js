@@ -89,7 +89,7 @@ _setModalVisible = () => {
   Alert.alert("alert");
 }
   renderImage(image) {
-    const { open } = this.state
+    // const { open } = this.state
 
     return (
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
@@ -174,7 +174,7 @@ _setModalVisible = () => {
                         <Text style={styles.buttonTitle}>Basic Form</Text>
                       </TouchableOpacity>
                     </View>
-                    <View style={{ ...styles.formArea }}>
+                    <View style={styles.formArea}>
                       <TouchableOpacity style={styles.wrapButton} onPress={() => { Alert.alert('Colorful Form을 선택!') }}>
                         <Text style={styles.buttonTitle}>Colorful Form</Text>
                       </TouchableOpacity>
@@ -269,7 +269,9 @@ _setModalVisible = () => {
                   fontWeight: 'bold',
                   borderBottomWidth: 0.5
                 }}>상품 내용 작성</Text>
-                <TextInput style={styles.contentIntput} placeholder={"작성"}></TextInput>
+                <TextInput 
+                style={styles.contentIntput}
+                 placeholder={"작성"}></TextInput>
               </View>
 
 
