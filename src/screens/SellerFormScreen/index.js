@@ -22,12 +22,15 @@ export default class SellerFormScreen extends Component {
     super(props)
     this.state = {
       images: null,
-      modalVisible: false
+      modalVisible: false,
+      // open: false
     }
   }
   setModalVisible = (visible) => {
     this.setState({ modalVisible: visible })
+    // this.setState({ open: visible }) 
   }
+  
 
   pickMultiple(cropit) {
     ImagePicker.openPicker({
@@ -53,33 +56,53 @@ export default class SellerFormScreen extends Component {
     return (oldH / oldW) * newW;
   }
 
-  clickImage(){
-    
-   //TODO: Modal을 이용하여 이미지 편집 창 구현 
-    Alert.alert('click the Image')
-    return (
-      <Modal
-      animationType="slide"
-      transparent={true}
-      // visible={modalVisible}
-      onRequestClose={() => {
-        Alert.alert("Modal has been closed")
-      }}>
-        <View style={{
-          
-                  flex: 1, justifyContent: "center",
-                  alignItems: "center", marginTop: 22
-                }}></View>
+  // clickImage () {
 
-      </Modal>
-    )
-  }
+  //   const { modalVisible } = this.state
+  //   this.setState({ modalVisible: visible })
 
+  //   //TODO: Modal을 이용하여 이미지 편집 창 구현 
+  //   // Alert.alert('click the Image')
+  //   return (
+  //     <Modal
+  //               animationType="slide"
+  //               transparent={true}
+  //               visible={modalVisible}
+  //               onRequestClose={() => {
+  //                 Alert.alert("Modal has been closed")
+  //               }}>
+  //       <View style={{
+
+  //         flex: 1, justifyContent: "center",
+  //         alignItems: "center", marginTop: 22
+  //       }}>
+  //         <Text>asdqwerty</Text>
+  //       </View>
+  //     </Modal>
+  //   )
+  // }
+// state = {open: false}
   renderImage(image) {
-    return(<TouchableOpacity onPress={()=>this.clickImage()}>
-      <Image style={styles.outImage} source={image} />
-    </TouchableOpacity>
-      
+    const { modalVisible } = this.state
+
+    return (
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+       <TouchableOpacity onPress={()=>this.setModalVisible(true)}
+      style={{ alignItems: 'center' }}>
+        <Image style={styles.outImage} source={image} />
+      </TouchableOpacity>
+        <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        // open = {this.state.open}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed")
+        }}>
+          <View></View>
+        </Modal>
+
+      </View>
     )
   }
 
@@ -205,11 +228,11 @@ export default class SellerFormScreen extends Component {
               </View>
 
               {/* <View style={styles.formArea}> */}
-                <ScrollView horizontal={true} >
+              <ScrollView horizontal={true} >
                 {this.state.images ? this.state.images.map(i => <View key={i.uri}>{this.renderAsset(i)}</View>) : null}
               </ScrollView>
               {/* </View> */}
-              
+
 
               <View style={styles.formArea}>
                 <TextInput style={styles.textForm} placeholder={"상품명"}></TextInput>
@@ -246,7 +269,7 @@ export default class SellerFormScreen extends Component {
 
               {/************ Upload Button ************/}
               <View style={styles.formArea}>
-                <TouchableOpacity style={styles.wrapButton}>
+                <TouchableOpacity style={styles.wrapButton} onPress={() => Alert.alert("게시 완료!")}>
                   <Text style={styles.buttonTitle}>상품 게시!</Text>
                 </TouchableOpacity>
               </View>
@@ -280,16 +303,16 @@ const styles = StyleSheet.create({
     paddingRight: wp('10%'),
     justifyContent: 'center'
   },
-  outImage:{
-  //  width: wp('50%'),
-  // width:300,
-   height: 300,
+  outImage: {
+    //  width: wp('50%'),
+    // width:300,
+    height: 300,
     // paddingLeft: wp('10%'),
     // paddingRight: wp('10%'),
     // marginBottom: 5,
     // marginTop: 5,
-    margin:10,
-    padding:10,
+    margin: 10,
+    padding: 10,
     resizeMode: "cover",
     justifyContent: 'center',
     alignItems: 'center',
@@ -406,4 +429,4 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     marginTop: 15
   }
- })
+})
