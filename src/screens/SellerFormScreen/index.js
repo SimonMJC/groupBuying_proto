@@ -23,13 +23,14 @@ export default class SellerFormScreen extends Component {
     this.state = {
       images: null,
       modalVisible: false,
-      // open: false
+      open: false
     }
   }
   setModalVisible = (visible) => {
     this.setState({ modalVisible: visible })
     // this.setState({ open: visible }) 
   }
+  
   
 
   pickMultiple(cropit) {
@@ -82,25 +83,30 @@ export default class SellerFormScreen extends Component {
   //   )
   // }
 // state = {open: false}
+
+_setModalVisible = () => {
+  // this.setState({open: _visible})
+  Alert.alert("alert");
+}
   renderImage(image) {
-    const { modalVisible } = this.state
+    const { open } = this.state
 
     return (
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-       <TouchableOpacity onPress={()=>this.setModalVisible(true)}
+       <TouchableOpacity onPress={()=>this._setModalVisible(true)}
       style={{ alignItems: 'center' }}>
         <Image style={styles.outImage} source={image} />
       </TouchableOpacity>
-        <Modal
+        {/* <Modal
         animationType="slide"
         transparent={true}
-        visible={modalVisible}
+        visible={open}
         // open = {this.state.open}
         onRequestClose={() => {
           Alert.alert("Modal has been closed")
         }}>
           <View></View>
-        </Modal>
+        </Modal> */}
 
       </View>
     )
