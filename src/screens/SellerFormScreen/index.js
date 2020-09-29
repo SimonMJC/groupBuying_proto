@@ -13,7 +13,7 @@ import {
   Modal,
   FlatList
 } from 'react-native';
-import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
+import { TextInput, TouchableOpacity, TouchableHighlight } from 'react-native-gesture-handler';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import ImagePicker from 'react-native-customized-image-picker'
 
@@ -41,6 +41,7 @@ export default class SellerFormScreen extends Component {
       multiple: true,
       cropping: cropit,
       isPlayGif: true,
+     
 
 
     }).then(images => {
@@ -241,23 +242,84 @@ _setModalVisible = () => {
 
 
               <View style={styles.formArea}>
-                <TextInput style={styles.textForm} placeholder={"상품명"}></TextInput>
+                
+                <TextInput style={styles.textForm} 
+                placeholder={"Test"} 
+                // autoCompleteType={"cc-number"}
+                // autoCorrect={true}
+                blurOnSubmit={true} //submit => blur
+                contextMenuHidden={true}
+                // autoFocus={true}
+                selectionColor="#46c3ad"
+                textContentType="name"
+                clearButtonMode={true}
+                disableFullscreenUI={true}></TextInput>
+               
+              </View>
+              <View style={styles.formArea}>
+                <TextInput style={styles.textForm}
+                 placeholder={"상품명"}
+                 clearButtonMode={true}
+                 multiline={true}
+                 // autoCompleteType={"cc-number"}
+                // autoCorrect={true}
+                blurOnSubmit={true} //submit => blur
+                contextMenuHidden={true}
+                // autoFocus={true}
+                selectionColor="#46c3ad"
+                textContentType="name"></TextInput>
               </View>
 
               <View style={styles.formArea}>
-                <TextInput style={styles.textForm} placeholder={"시작 금액"}></TextInput>
+                <TextInput style={styles.textForm}
+                 placeholder={"시작 금액"}
+                 clearButtonMode={true}
+                 // autoCompleteType={"cc-number"}
+                // autoCorrect={true}
+                blurOnSubmit={true} //submit => blur
+                contextMenuHidden={true}
+                // autoFocus={true}
+                selectionColor="#46c3ad"
+                textContentType="name"></TextInput>
               </View>
 
               <View style={styles.formArea}>
-                <TextInput style={styles.textForm} placeholder={"1차 할인율"}></TextInput>
+                <TextInput style={styles.textForm} 
+                placeholder={"1차 할인율"}
+                clearButtonMode={true}
+                // autoCompleteType={"cc-number"}
+                // autoCorrect={true}
+                blurOnSubmit={true} //submit => blur
+                contextMenuHidden={true}
+                // autoFocus={true}
+                selectionColor="#46c3ad"
+                textContentType="name"></TextInput>
               </View>
 
               <View style={styles.formArea}>
-                <TextInput style={styles.textForm} placeholder={"2차 할인율"}></TextInput>
+                <TextInput style={styles.textForm} 
+                placeholder={"2차 할인율"}
+                clearButtonMode={true}
+                // autoCompleteType={"cc-number"}
+                // autoCorrect={true}
+                blurOnSubmit={true} //submit => blur
+                contextMenuHidden={true}
+                // autoFocus={true}
+                selectionColor="#46c3ad"
+                textContentType="name"></TextInput>
               </View>
 
               <View style={styles.formArea}>
-                <TextInput style={styles.textForm} placeholder={"3차 할인율"}></TextInput>
+                <TextInput style={styles.textForm}
+                 placeholder={"3차 할인율"}
+                 clearButtonMode={true}
+                 // autoCompleteType={"cc-number"}
+                // autoCorrect={true}
+                blurOnSubmit={true} //submit => blur
+                contextMenuHidden={true}
+                // autoFocus={true}
+                selectionColor="#46c3ad"
+                textContentType="name"></TextInput>
               </View>
 
 
@@ -271,7 +333,18 @@ _setModalVisible = () => {
                 }}>상품 내용 작성</Text>
                 <TextInput 
                 style={styles.contentIntput}
-                 placeholder={"작성"}></TextInput>
+                fontSize={wp('4%')}
+                 placeholder={"작성"}
+                 maxLength={500}
+                //  onChange={()=> }
+                 // autoCompleteType={"cc-number"}
+                // autoCorrect={true}
+                blurOnSubmit={true} //submit => blur
+                contextMenuHidden={true}
+                // autoFocus={true}
+                selectionColor="#46c3ad"
+                textContentType="name"
+                multiline={true}></TextInput>
               </View>
 
 
