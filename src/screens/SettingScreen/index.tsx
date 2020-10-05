@@ -9,7 +9,7 @@ import {
 import { StackActions, NavigationActions } from 'react-navigation';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {PERMISSIONS, RESULTS, request} from 'react-native-permission'
-//***************PERMISSION**************//
+// ***************PERMISSION**************//
 
 export default class SettingScreen extends Component{
     //판매자 게시글 폼

@@ -17,6 +17,7 @@ import { TextInput, TouchableOpacity, TouchableHighlight } from 'react-native-ge
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import ImagePicker from 'react-native-customized-image-picker'
 
+
 export default class SellerFormScreen extends Component {
   constructor(props) {
     super(props)
@@ -41,9 +42,6 @@ export default class SellerFormScreen extends Component {
       multiple: true,
       cropping: cropit,
       isPlayGif: true,
-     
-
-
     }).then(images => {
       this.setState({
         images: images.map(i => {

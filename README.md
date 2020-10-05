@@ -46,6 +46,7 @@
 ##### 3-6. FAQ
 ##### 3-7. 고객 센터
 ##### 3-8. 회원 탈퇴
+##### Code Refactoring: .js 파일들 .tsx로 변환 및 Hooks 적용, Functional로 reFacatoring
 
 ____________________
 #### Development Environment
