@@ -19,6 +19,13 @@ import DetailScreen from './DetailScreen'
 import SellerFormScreen from './SellerFormScreen'
 
 
+interface Props{
+
+}
+interface State{
+
+}
+
 const HomeStack = createStackNavigator(
     {
         HomeScreen,
@@ -161,4 +168,4 @@ const AppStack = createStackNavigator(
     }
 );
 
-export default createAppContainer(AppStack);
+export default createAppContainer<Props, State>(AppStack);

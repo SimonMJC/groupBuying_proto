@@ -12,6 +12,10 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 import { GoogleSignin, GoogleSigninButton, statusCodes } from 'react-native-google-signin'
 
 
+interface Props{
+
+}
+
 export default class LoginScreen extends Component{
     constructor(props) {
         super(props);

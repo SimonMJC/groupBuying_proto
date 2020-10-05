@@ -5,6 +5,7 @@ import {
     Button,
     StyleSheet
 } from 'react-native';
+
 export default class AlarmScreen extends Component{
 
     render(){

@@ -260,7 +260,7 @@ _setModalVisible = () => {
                 <TextInput style={styles.textForm}
                  placeholder={"상품명"}
                  clearButtonMode={true}
-                 multiline={true}
+                //  multiline={true}
                  // autoCompleteType={"cc-number"}
                 // autoCorrect={true}
                 blurOnSubmit={true} //submit => blur
@@ -330,11 +330,11 @@ _setModalVisible = () => {
                   fontSize: wp('4%'),
                   fontWeight: 'bold',
                   borderBottomWidth: 0.5
-                }}>상품 내용 작성</Text>
+                }}>상품 정보 작성</Text>
                 <TextInput 
                 style={styles.contentIntput}
                 fontSize={wp('4%')}
-                 placeholder={"작성"}
+                 placeholder={"상품 정보를 작성 해주세요!"}
                  maxLength={500}
                 //  onChange={()=> }
                  // autoCompleteType={"cc-number"}
@@ -354,7 +354,6 @@ _setModalVisible = () => {
                   <Text style={styles.buttonTitle}>상품 게시!</Text>
                 </TouchableOpacity>
               </View>
-
             </View>
           </ScrollView>
 
